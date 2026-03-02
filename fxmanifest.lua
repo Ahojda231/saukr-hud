@@ -20,8 +20,7 @@ client_scripts {
 }
 
 server_scripts {
-    'server/main.lua',
-    'items.lua'
+    'server/main.lua'
 }
 
 lua54 'yes'
