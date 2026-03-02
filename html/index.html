@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'DSEG7-Classic';
+            src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'DSEG7-Classic';
+            src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hud-wrap">
+
+        <div class="server-logo">
+            <img src="img/logo.png" alt="Server Logo"
+                onerror="this.src='https://via.placeholder.com/150x50/333/d3b658?text=LOGO'">
+        </div>
+
+        <div class="location-info" id="location-info">
+            <div class="location-street-row">
+                <i class="fas fa-map-marker-alt location-icon"></i>
+                <span class="location-street" id="location-street">Neznámá ulice</span>
+            </div>
+            <div class="location-zone-row">
+                <span class="location-zone" id="location-zone">Neznámá lokalita</span>
+            </div>
+        </div>
+
+        <div class="compass" id="compass">
+            <div class="compass-inner">
+                <i class="fas fa-compass compass-icon"></i>
+                <span class="compass-direction" id="compass-direction">Sever</span>
+            </div>
+        </div>
+
+        <div class="status-hud-container">
+
+            <div class="sc-square" id="stamina-card">
+                <div class="sc-inner">
+                    <i class="fas fa-bolt sc-icon" style="color:#FACC15"></i>
+                    <span class="sc-pct" id="stamina-pct">100</span>
+                </div>
+                <div class="sc-bar"><div class="sc-bar-fill" id="stamina-bar" style="width:100%;background:#FACC15"></div></div>
+            </div>
+
+            <div class="sc-square" id="health-card">
+                <div class="sc-inner">
+                    <i class="fas fa-heart sc-icon" style="color:#ef4444"></i>
+                    <span class="sc-pct" id="health-pct">100</span>
+                </div>
+                <div class="sc-bar"><div class="sc-bar-fill" id="health-bar" style="width:100%;background:#ef4444"></div></div>
+            </div>
+
+            <div class="sc-square" id="armor-card">
+                <div class="sc-inner">
+                    <i class="fas fa-shield-alt sc-icon" style="color:#3b82f6"></i>
+                    <span class="sc-pct" id="armor-pct">100</span>
+                </div>
+                <div class="sc-bar"><div class="sc-bar-fill" id="armor-bar" style="width:100%;background:#3b82f6"></div></div>
+            </div>
+
+            <div class="sc-square" id="hunger-card">
+                <div class="sc-inner">
+                    <i class="fas fa-hamburger sc-icon" style="color:#f97316"></i>
+                    <span class="sc-pct" id="hunger-pct">100</span>
+                </div>
+                <div class="sc-bar"><div class="sc-bar-fill" id="hunger-bar" style="width:100%;background:#f97316"></div></div>
+            </div>
+
+            <div class="sc-square" id="thirst-card">
+                <div class="sc-inner">
+                    <i class="fas fa-tint sc-icon" style="color:#0ea5e9"></i>
+                    <span class="sc-pct" id="thirst-pct">100</span>
+                </div>
+                <div class="sc-bar"><div class="sc-bar-fill" id="thirst-bar" style="width:100%;background:#0ea5e9"></div></div>
+            </div>
+
+            <div class="sc-square sc-voice" id="voice-card">
+                <div class="sc-inner">
+                    <i class="fas fa-microphone sc-icon" id="voice-icon" style="color:rgba(255,255,255,0.45)"></i>
+                    <div class="voice-dots">
+                        <div class="voice-dot" id="voice-dot-1"></div>
+                        <div class="voice-dot" id="voice-dot-2"></div>
+                        <div class="voice-dot" id="voice-dot-3"></div>
+                    </div>
+                </div>
+                <div class="sc-bar"></div>
+            </div>
+
+        </div>
+
+        <div class="speedo" id="speedometer">
+            <div class="speedo-inds">
+                <div class="speedo-ind" id="ind-engine"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="speedo-ind" id="ind-belt"><i class="fas fa-user-shield"></i></div>
+                <div class="speedo-ind" id="ind-lights"><i class="fas fa-lightbulb"></i></div>
+                <div class="speedo-ind speedo-gear" id="gear-box"><span id="gear-value">1</span></div>
+            </div>
+            <div class="speedo-main">
+                <div class="speedo-center">
+                    <div class="speedo-digits-wrap" id="speed-value">
+                        <span class="speedo-digit"><span class="speedo-ghost-d">8</span><span class="speedo-real-d">0</span></span>
+                        <span class="speedo-digit"><span class="speedo-ghost-d">8</span><span class="speedo-real-d">0</span></span>
+                        <span class="speedo-digit"><span class="speedo-ghost-d">8</span><span class="speedo-real-d">0</span></span>
+                    </div>
+                    <div class="speedo-unit">mph</div>
+                </div>
+                <div class="speedo-rpm"><div class="speedo-rpm-fill" id="rpm-bar"></div></div>
+            </div>
+            <div class="speedo-fuel-col">
+                <i class="fas fa-gas-pump speedo-fuel-icon" id="fuel-icon"></i>
+                <div class="speedo-vtrack">
+                    <div class="speedo-vfill" id="fuel-bar" style="height:100%"></div>
+                </div>
+                <span class="speedo-fuel-pct" id="fuel-pct">100%</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pause-overlay" id="pause-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
